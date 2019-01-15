@@ -33,6 +33,12 @@
 
 int main(int argc, char **argv)
 {
+	if(argc != 2)
+	{
+		printf("用法: %s <PORT>\n", argv[0]);
+		exit(0);
+	}
+
 	int sockfd = Socket(AF_INET, SOCK_STREAM, 0);
 
 	struct sockaddr_in addr;
@@ -41,7 +47,7 @@ int main(int argc, char **argv)
 
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
-	addr.sin_port = htons(50001);
+	addr.sin_port = htons(atoi(argv[1]));
 
 	Bind(sockfd, (struct sockaddr *)&addr, len);
 	Listen(sockfd, 3);

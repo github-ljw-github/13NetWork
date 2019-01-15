@@ -57,13 +57,17 @@ int main(int argc, char **argv)
 	Connect(sockfd, (struct sockaddr *)&addr, len);
 	printf("连接成功！\n");
 
-	char buf[100];
+	char sndbuf[100];
+	char rcvbuf[100];
 	while(1)
 	{
-		bzero(buf, 100);
-		fgets(buf, 100, stdin);
+		bzero(sndbuf, 100);
+		fgets(sndbuf, 100, stdin);
+		write(sockfd, sndbuf, strlen(sndbuf));
 
-		write(sockfd, buf, strlen(buf));
+		bzero(rcvbuf, 100);
+		read(sockfd, rcvbuf, 100);
+		printf("来自服务器消息: %s", rcvbuf);
 	}
 
 	close(sockfd);
