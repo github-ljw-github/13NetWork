@@ -11,7 +11,7 @@ CPPFLAGS += -I inc/
 LDFLAGS += -lpthread
 
 
-teddy.elf:$(SRC)
+download.elf:$(SRC)
 	$(CC) $^ -o $@ $(CPPFLAGS) $(LDFLAGS) -DNDEBUG
 
 debug.elf:$(SRC)
