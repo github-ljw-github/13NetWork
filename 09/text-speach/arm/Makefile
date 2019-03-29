@@ -6,3 +6,4 @@ client.elf:
 
 clean:
 	-@$(RM) client.elf
+	-@echo "Done."
